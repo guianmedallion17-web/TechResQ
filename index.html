@@ -1,0 +1,248 @@
+# TechResQ
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechResQ | Computer Emergency Guide</title>
+<style>
+:root{--navy:#142b49;--blue:#2463a6;--light:#edf4fb;--green:#16846b;--white:#fff;--text:#24344b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fa;color:var(--text)}
+header{background:var(--navy);color:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:bold}.logo span{color:#78d6c0}
+header small{color:#d8e5f5}
+main{max-width:1100px;margin:auto;padding:24px 18px}
+.hero{background:linear-gradient(120deg,#142b49,#2463a6);color:white;padding:34px 25px;border-radius:18px;margin-bottom:22px}
+.hero h1{font-size:clamp(28px,5vw,42px);margin:0 0 12px}
+.hero p{max-width:650px;line-height:1.6;color:#e2ecf8}
+button{border:0;border-radius:9px;padding:12px 16px;background:var(--blue);color:white;font-weight:bold;cursor:pointer}
+button:hover{opacity:.88}
+.hero button{background:#78d6c0;color:#142b49}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tabs button{background:white;color:var(--navy);border:1px solid #d8e1ec}
+.tabs button.active{background:var(--navy);color:white}
+.panel{display:none}.panel.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card,.lesson{background:white;padding:20px;border-radius:14px;border:1px solid #e2e8f0}
+.card h3,.lesson h3{color:var(--navy)}
+.card p,.lesson p{line-height:1.6;color:#56677c}
+.icon{font-size:30px}
+.notice{background:#fff1df;border-left:5px solid #e49a42;padding:14px;border-radius:8px;line-height:1.6;margin:15px 0}
+.safe{background:#e4f5ef;border-left:5px solid var(--green);padding:14px;border-radius:8px;line-height:1.6;margin:15px 0}
+select{padding:12px;border:1px solid #ccd7e4;border-radius:8px;width:100%;margin:8px 0 14px}
+.question{font-size:19px;font-weight:bold;line-height:1.5}
+.answers{display:grid;gap:9px;margin:16px 0}
+.answers button{text-align:left;background:#f0f4f8;color:var(--text);border:1px solid #dce5ef}
+.answers button.correct{background:#d9f3e3;border-color:#328759}
+.answers button.wrong{background:#ffe2de;border-color:#d85848}
+.answers button:disabled{cursor:default}
+.progress{height:9px;background:#e1e8f0;border-radius:10px;overflow:hidden;margin:12px 0}
+.progress div{height:100%;width:0;background:var(--green);transition:.3s}
+footer{text-align:center;padding:24px;color:#718096;font-size:13px}
+@media(max-width:500px){header{padding:16px}.hero{padding:24px 18px}main{padding:18px 12px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">💻 Tech<span>ResQ</span></div>
+ <small>Prevent. Respond. Recover.</small>
+</header>
+<main>
+<section class="hero">
+ <h1>Be Smarter in Every Tech Emergency.</h1>
+ <p>Learn how to protect your files, avoid cyberthreats, and respond
+ to common computer problems through practical guides and quizzes.</p>
+ <button onclick="showTab('prevent')">Explore the Modules →</button>
+</section>
+
+<div class="grid" style="margin-bottom:22px">
+ <div class="card"><div class="icon">🛡️</div><h3>Prevent</h3><p>Learn safe computing habits before problems happen.</p></div>
+ <div class="card"><div class="icon">🚨</div><h3>Respond</h3><p>Find appropriate steps for common computer emergencies.</p></div>
+ <div class="card"><div class="icon">🎯</div><h3>Test Your Skills</h3><p>Practice making safer technology decisions.</p></div>
+</div>
+
+<nav class="tabs">
+ <button class="active" data-tab="home" onclick="showTab('home')">Overview</button>
+ <button data-tab="prevent" onclick="showTab('prevent')">Preventive Modules</button>
+ <button data-tab="respond" onclick="showTab('respond')">Emergency Response</button>
+ <button data-tab="scenario" onclick="showTab('scenario')">Tech Scenarios</button>
+ <button data-tab="quiz" onclick="showTab('quiz')">Quiz</button>
+</nav>
+
+<section id="home" class="panel active">
+ <div class="lesson">
+  <h2>Welcome to TechResQ</h2>
+  <p>Technology makes studying easier, but computer emergencies can
+  interrupt schoolwork and put personal information at risk.</p>
+  <p>Use these modules to learn how to prevent common problems and
+  make informed decisions when something goes wrong.</p>
+  <div class="notice"><b>Remember:</b> If you suspect a security incident,
+  avoid entering passwords on a suspicious device. Ask a trusted IT
+  administrator or technician for help when needed.</div>
+  <h3>Your learning progress</h3>
+  <p id="scoreText">Quiz points: 0</p>
+  <div class="progress"><div id="scoreBar"></div></div>
+  <button onclick="showTab('quiz')">Take the Quiz</button>
+ </div>
+</section>
+
+<section id="prevent" class="panel">
+ <h2>Preventive Modules</h2>
+ <div class="grid">
+  <article class="card"><div class="icon">🔒</div><h3>1. Cybersecurity</h3>
+   <p>Use strong, unique passwords and enable multifactor authentication.
+   Keep your operating system and security software updated.</p>
+   <p>Avoid suspicious links, unexpected attachments, and requests for
+   passwords or verification codes.</p>
+  </article>
+  <article class="card"><div class="icon">💾</div><h3>2. Data Protection</h3>
+   <p>Back up important school files to a trusted external drive or
+   cloud service. Check that your backups can actually be restored.</p>
+   <p>Keep multiple copies when possible and protect access to your files.</p>
+  </article>
+  <article class="card"><div class="icon">🔌</div><h3>3. Power and Hardware</h3>
+   <p>Use a suitable surge protector or UPS when appropriate. Keep vents
+   clear, avoid liquids near devices, and inspect cables for damage.</p>
+   <p>Shut down equipment properly and never open power supplies yourself.</p>
+  </article>
+  <article class="card"><div class="icon">🌐</div><h3>4. Safe Internet Use</h3>
+   <p>Download software from trusted sources. Check website addresses,
+   use secure networks, and avoid sharing sensitive information on
+   public computers.</p>
+  </article>
+ </div>
+</section>
+
+<section id="respond" class="panel">
+ <h2>Emergency Response Guides</h2>
+ <div class="lesson">
+  <h3>🦠 Malware or Suspicious Activity</h3>
+  <p>1. Stop interacting with suspicious pop-ups and links.</p>
+  <p>2. If you suspect an active infection, disconnect the device from
+  Wi-Fi or the network if you can do so safely.</p>
+  <p>3. Use trusted security tools or contact IT support. Do not download
+  random "cleaner" programs or enter credentials into suspicious prompts.</p>
+  <p>4. From a trusted, clean device, change affected passwords and notify
+  the relevant school or service administrator if accounts may be compromised.</p>
+ </div>
+ <div class="lesson">
+  <h3>📁 Lost or Deleted Files</h3>
+  <p>1. Stop saving or installing things on the affected drive to reduce
+  the risk of overwriting recoverable data.</p>
+  <p>2. Check the Recycle Bin or Trash, file history, and trusted backups.</p>
+  <p>3. Restore files from a known-good backup if available.</p>
+  <p>4. If the data is valuable and the drive may be failing, stop using it
+  and consult a qualified recovery professional. Avoid writing recovery
+  tools to the affected drive.</p>
+ </div>
+ <div class="lesson">
+  <h3>⚡ Overheating, Power Failure, or Hardware Trouble</h3>
+  <p>1. If you smell burning, see sparks, or notice a swollen battery,
+  stop using the device and move away from danger. Do not charge it or
+  handle a damaged battery.</p>
+  <p>2. For smoke or fire, evacuate and contact emergency services.
+  Do not open a power supply or attempt electrical repairs.</p>
+  <p>3. If there is no immediate hazard, shut down normally when possible,
+  check external connections, and let an overheating device cool.</p>
+  <p>4. Contact a qualified technician if the problem continues.</p>
+ </div>
+</section>
+
+<section id="scenario" class="panel">
+ <h2>Choose a Tech Emergency</h2>
+ <div class="lesson">
+  <label for="situation"><b>What is happening?</b></label>
+  <select id="situation" onchange="scenarioChange()">
+   <option value="malware">Your computer displays a suspicious malware warning.</option>
+   <option value="files">You accidentally deleted an important school file.</option>
+   <option value="power">Your laptop becomes unusually hot.</option>
+   <option value="phishing">You clicked a suspicious link and entered your password.</option>
+   <option value="failure">Your computer suddenly loses power.</option>
+  </select>
+  <div id="scenarioInfo" class="notice"></div>
+ </div>
+</section>
+
+<section id="quiz" class="panel">
+ <div class="lesson">
+  <h2>TechResQ Knowledge Challenge</h2>
+  <p>Choose the best response and learn from the explanation.</p>
+  <p id="quizCount">Question 1</p>
+  <div class="progress"><div id="quizBar"></div></div>
+  <div id="question" class="question"></div>
+  <div id="answers" class="answers"></div>
+  <div id="feedback" aria-live="polite"></div>
+  <button id="next" onclick="nextQuestion()" style="display:none">Next Question →</button>
+  <button id="restart" onclick="restartQuiz()" style="display:none">Try Again</button>
+ </div>
+</section>
+</main>
+<footer>TechResQ | Computer Emergency Preparedness for Students</footer>
+
+<script>
+const tabs=document.querySelectorAll('.tabs button');
+function showTab(id){
+ document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+ tabs.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+ document.getElementById(id).classList.add('active');
+ if(id==='scenario')scenarioChange();
+ if(id==='quiz'&&!started)renderQuestion();
+}
+const scenarios={
+ malware:"Do not click the warning or download its suggested tool. Avoid interacting with the pop-up. If infection is suspected, disconnect from the network and use trusted security software or contact IT support.",
+ files:"Stop saving new data to the affected drive. Check the Recycle Bin or Trash and your backups. If the files are important, seek recovery advice before making changes.",
+ power:"If the laptop smells burnt, smokes, sparks, or has a swollen battery, stop using it and keep away. For ordinary overheating without danger signs, shut down if safe, let it cool, and check ventilation.",
+ phishing:"Using a trusted device, change the affected password immediately, enable multifactor authentication, and sign out other sessions if available. Contact the service or school IT team and report the incident.",
+ failure:"If there are no signs of electrical danger, check the power cable and outlet safely. Avoid repeated forced shutdowns. If the device smells burnt, sparks, or has battery damage, stay away and seek professional help."
+};
+function scenarioChange(){
+ document.getElementById('scenarioInfo').textContent=scenarios[document.getElementById('situation').value];
+}
+const questions=[
+ {q:"1. What is the best way to protect important school files?",a:["Keep only one copy on your laptop","Create backups and check they can be restored","Share your password with a friend"],c:1,e:"Backups help you recover files after deletion, damage, or device failure."},
+ {q:"2. You receive an unexpected email asking for your password. What should you do?",a:["Reply with your password","Click every link","Do not share credentials; verify the message through a trusted channel"],c:2,e:"Unexpected credential requests can be phishing attempts."},
+ {q:"3. Your computer may have malware. What is a sensible first step?",a:["Download a random cleaner","Stop interacting with suspicious content and disconnect from the network if infection is suspected","Enter your bank password to test it"],c:1,e:"Avoid further interaction and seek trusted security assistance."},
+ {q:"4. You accidentally delete a school assignment. What should you check first?",a:["The Recycle Bin or Trash and available backups","Format the drive","Install several apps on the same drive"],c:0,e:"Check recoverable deleted files and backups before taking risky actions."},
+ {q:"5. What should you do if a laptop battery is swollen?",a:["Press it flat","Keep charging it","Stop using or charging it and seek qualified assistance"],c:2,e:"A swollen battery can be dangerous. Do not puncture or compress it."},
+ {q:"6. How can you make an account safer?",a:["Reuse one password everywhere","Use unique passwords and multifactor authentication","Share verification codes"],c:1,e:"Unique passwords and multifactor authentication reduce account risks."},
+ {q:"7. Your computer smells burnt and begins smoking. What should you do?",a:["Open the power supply","Continue working","Move away, alert others, evacuate if needed, and contact emergency services"],c:2,e:"Smoke or burning smells can indicate a serious electrical hazard."},
+ {q:"8. You entered your password on a suspected phishing site. What should you do?",a:["Ignore it","Change the affected password using a trusted device and report the incident","Send your verification code to the site"],c:1,e:"Act quickly from a trusted device and notify the relevant service or IT team."}
+];
+let index=0,score=0,answered=false,started=false;
+function renderQuestion(){
+ started=true;answered=false;
+ const q=questions[index];
+ document.getElementById('quizCount').textContent=`Question ${index+1} of ${questions.length} · Score: ${score}`;
+ document.getElementById('question').textContent=q.q;
+ document.getElementById('quizBar').style.width=(index/questions.length*100)+'%';
+ document.getElementById('feedback').textContent='';
+ document.getElementById('next').style.display='none';
+ document.getElementById('restart').style.display='none';
+ const box=document.getElementById('answers');box.innerHTML='';
+ q.a.forEach((a,i)=>{
+  const b=document.createElement('button');b.textContent=a;
+  b.onclick=()=>answer(i);box.appendChild(b);
+ });
+}
+function answer(choice){
+ if(answered)return;answered=true;
+ const q=questions[index],buttons=document.querySelectorAll('#answers button');
+ buttons.forEach((b,i)=>{b.disabled=true;if(i===q.c)b.classList.add('correct');else if(i===choice)b.classList.add('wrong')});
+ if(choice===q.c){score++;document.getElementById('feedback').textContent='Correct! '+q.e}
+ else document.getElementById('feedback').textContent='Not quite. '+q.e;
+ document.getElementById('next').style.display=index<questions.length-1?'inline-block':'none';
+ if(index===questions.length-1){
+  document.getElementById('restart').style.display='inline-block';
+  document.getElementById('feedback').textContent+=(score>=6?' Great work!':' Review the modules and try again.')+` Final score: ${score}/${questions.length}.`;
+  document.getElementById('quizBar').style.width='100%';
+  document.getElementById('scoreText').textContent=`Latest quiz score: ${score}/${questions.length}`;
+  document.getElementById('scoreBar').style.width=(score/questions.length*100)+'%';
+ }
+}
+function nextQuestion(){if(index<questions.length-1){index++;renderQuestion()}}
+function restartQuiz(){index=0;score=0;renderQuestion()}
+</script>
+</body>
+</html>
+
